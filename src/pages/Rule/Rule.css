@@ -1,0 +1,20 @@
+.rule-main-container{
+    margin-top: 5rem;
+    flex-direction: column;
+    border: 0.2px solid var(--borderGrey);
+    border-radius: var(--border-md);
+    background: var(--md-blue);
+    padding:2rem 3rem;
+    gap:2rem;
+}
+
+.rule-main{
+    line-height: 2rem;
+}
+
+@media screen and (max-width:550px) {
+    .rule-main-container {
+        padding: 1rem;
+        width: 80%;
+    }
+}

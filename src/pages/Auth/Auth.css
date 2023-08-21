@@ -1,0 +1,97 @@
+/*  */
+.auth-container {
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.auth-main-container {
+    flex-direction: column;
+    width: 25rem;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    color: var(--link);
+    border: 1.5px solid var(--font-color);
+    border-radius: var(--border-md);
+    background: var(--md-blue);
+}
+
+.auth-main,
+.auth-checkbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.8rem;
+}
+
+.auth-main input {
+    border-radius: var(--border-sm);
+    border: 2px solid #838383;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background: inherit;
+    color:var(--font-color)
+
+}
+
+.auth-main input::placeholder {
+    font-size: 0.9rem;
+}
+
+.auth-email,
+.auth-pwd,
+.auth-firstname,
+.auth-lastname {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-checkbox {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.1rem;
+    margin-bottom: 1rem;
+}
+
+.auth-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    cursor: pointer;
+}
+
+.auth-checkbox a {
+    color: var(-link);
+    margin-left: 1rem;
+}
+
+
+.auth-main label {
+    margin-bottom: 0.5rem;
+}
+
+.auth-main .link-btn {
+    width: 100%;
+}
+
+.auth-secondary-btn {
+    font-size: 1rem;
+}
+
+.sign-up-wrapper {
+    display: flex;
+    gap: 0.5rem
+}
+
+.sign-up-wrapper .text-input {
+    width: 100%;
+}
+
+
+@media screen and (max-width:550px) {
+    .auth-main-container {
+        width: 80%;
+    }
+}

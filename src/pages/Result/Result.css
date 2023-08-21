@@ -1,0 +1,68 @@
+.rsltcontainer,.rslt-header-container{
+    flex-direction: column;
+    margin: 2rem 0;
+}
+
+.rslt-header-container{
+    justify-content: flex-start;
+    gap:1.5rem
+}
+
+.rslt-que-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--borderGrey);
+    width: 575px;
+}
+
+.rslt-pg-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.rslt-pg-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+}
+
+.rslt-option {
+    background-color:var(--md-blue);
+    border-radius: 20px;
+    padding: 12px 10px 12px 20px;
+    margin-bottom: 1px;
+}
+
+.score-msg{
+    margin-left: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.right-ans{
+    background-color: var(--success);
+}
+
+.wrong-ans{
+    background-color: var(--danger);
+}
+
+.rslt-title{
+    color:var(--link)
+}
+
+.not-selected-text{
+    color:orange;
+    font-weight: bold;
+}
+
+@media screen and (max-width:550px) {
+    .rslt-que-container {
+        width: fit-content;
+        margin:1rem;
+    }
+}

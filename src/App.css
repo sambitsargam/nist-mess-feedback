@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.default-theme {
+  --drk-blue: #1A202C;
+  --borderGrey: #5e6064;
+  --md-blue: #223251;
+  --lt-drk-blue: #16426e;
+  --text-grey: #A0AEC0;
+  --font-color: var(--white);
+  background-color: var(--drk-blue);
+  transition:all 0.3s;
+}
+
+.light-theme {
+  --drk-blue: #ededed;
+  --borderGrey: #5e6064;
+  --md-blue: #e0e0e0;
+  --lt-drk-blue: #ededed;
+  --text-grey: #a6b3c4;
+  --font-color: var(--black);
+  background-color: var(--drk-blue);
+  transition:all 0.3s;
+
+
+}
+
+.App-container {
+  color: var(--font-color);
+  letter-spacing: 0.005em;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+
+@media screen and (max-width:550px) {
+  .App-container  {
+    width: 95%;
+  }
+}

@@ -1,0 +1,30 @@
+.navbar {
+    font-size: 1.5rem;
+    padding: 1rem 0rem;
+    justify-content: space-between;
+    background-color: var(--drk-blue);
+    border-bottom: 0.01px solid var(--borderGrey);
+    z-index: 1;
+}
+
+.profile-icon {
+    margin-left: 0.1rem;
+    color: var(--link);
+    cursor: pointer;
+    font-size: 1.8rem;
+}
+
+.nav-title {
+    color: var(--link);
+}
+.dashboard-text{
+    color:var(--font-color)
+}
+.navbar-right h5 {
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.navbar-right h5:hover {
+    color: var(--link);
+}
