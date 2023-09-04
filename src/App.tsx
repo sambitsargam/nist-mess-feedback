@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 import { Loader, Modal, Navbar, PrivateRoute } from "./component";
-import { Dashboard, Home, Rule, SignIn, UserProfile } from "./pages";
+import { Dashboard, Home, Rule, SignIn, UserProfile, Feedback, Complain } from "./pages";
 import "react-toastify/dist/ReactToastify.css";
 import { useQuiz } from "./context/Quiz/quiz-context";
 import { useTheme } from "./context/Theme/theme-context";
@@ -44,6 +44,24 @@ function App() {
             element={
               <PrivateRoute>
                 <Rule />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/feedback"
+            element={
+              <PrivateRoute>
+                <Feedback />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/complain"
+            element={
+              <PrivateRoute>
+                <Complain />
               </PrivateRoute>
             }
           />
