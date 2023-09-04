@@ -1,15 +1,10 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../../context/Quiz/quiz-context";
 import "./Home.css";
 
 export function Home() {
-  const navigate = useNavigate();
   const { dispatch } = useQuiz();
-  const playHandler = (id: string) => {
-    navigate("/rules");
-    sessionStorage.setItem("quizId", id);
-  };
+
 
   useEffect(() => {
     dispatch({ type: "RESET" });
