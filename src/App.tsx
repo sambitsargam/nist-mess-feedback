@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 import { Loader, Modal, Navbar, PrivateRoute } from "./component";
-import { Dashboard, Home, Question, Result, Rule, SignIn, SignUp, UserProfile } from "./pages";
+import { Dashboard, Home, Rule, SignIn, UserProfile } from "./pages";
 import "react-toastify/dist/ReactToastify.css";
 import { useQuiz } from "./context/Quiz/quiz-context";
 import { useTheme } from "./context/Theme/theme-context";
@@ -30,7 +30,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
           <Route
             path="/dashboard"
             element={
@@ -45,22 +44,6 @@ function App() {
             element={
               <PrivateRoute>
                 <Rule />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/question/:quizId"
-            element={
-              <PrivateRoute>
-                <Question />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/result"
-            element={
-              <PrivateRoute>
-                <Result />
               </PrivateRoute>
             }
           />

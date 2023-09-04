@@ -77,7 +77,7 @@ const loginUserWithGoogle = async () => {
     try {
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
-      provider.setCustomParameters({ hd: "nist.edu" });
+      provider.setCustomParameters({ hd: "gmail.com" });
       const result = await signInWithPopup(auth, provider);
       const user: any = result.user;
       if (user) {

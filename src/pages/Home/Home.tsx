@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuiz } from "../../context/Quiz/quiz-context";
-import { quizData } from "../Question/quiz.model";
 import "./Home.css";
 
 export function Home() {
@@ -42,9 +41,7 @@ export function Home() {
           <div className="category">
             <header className="category-header">Category</header>
             <main className="category-main" id="explore">
-              {quizData.map((quiz) => {
-                return (
-                  <div key={quiz.id} className="card text-overlay">
+                  {/* <div key={quiz.id} className="card text-overlay">
                     <div className="img-content">
                       <img className="card-img" src={quiz.img} alt={quiz.category} />
                     </div>
@@ -67,16 +64,14 @@ export function Home() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  </div> */}
             </main>
           </div>
         </div>
       </div>
       <div className="footer flex-center">
         <h5>
-          Made with <i className="fa fa-heart" aria-hidden="true"></i> by sambit{" "}
+          Made with <i className="fa fa-heart" aria-hidden="true"></i> by sambitsargam{" "}
         </h5>
         <div className="icon-bar">
           <a
