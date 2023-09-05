@@ -15,7 +15,7 @@ export function Navbar() {
       <div className="navbar-left">
         <Link to="/">
           <h3 className="nav-title" title="Home">
-            NIST MESS FEEDBACK
+            NIST MESS
           </h3>
         </Link>
       </div>
