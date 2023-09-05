@@ -1,5 +1,7 @@
 import "./complain.css";
 import React, { useState } from "react";
+import { Web3Storage } from "web3.storage";
+import axios from "axios";
 
 
 export function Complain() {
@@ -7,7 +9,7 @@ export function Complain() {
         fullname: "",
         email: "",
         roll: "",
-        q1: "",
+        mobile: "",
 
 
     });
@@ -21,8 +23,8 @@ export function Complain() {
 
     const submitData = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        const { fullname, email, roll, q1} = userData;
-        if (fullname && email && roll && q1) {
+        const { fullname, email, roll, mobile} = userData;
+        if (fullname && email && roll && mobile) {
             const res = fetch(
               "https://ccc-hiring-default-rtdb.firebaseio.com/userDataRecords.json",
               {
@@ -34,7 +36,7 @@ export function Complain() {
                   fullname,
                   email,
                   roll,
-                  q1,
+                  mobile,
                 }),
               }
             );
@@ -44,7 +46,7 @@ export function Complain() {
                 fullname: "",
                 email: "",
                 roll: "",
-                q1: "",
+                mobile: "",
               });
               alert("Answers Received🎉"); 
             } else {
@@ -54,6 +56,8 @@ export function Complain() {
             alert("⚠️ plz answer all the question");
           }
         };
+
+      
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
   return (
@@ -101,7 +105,7 @@ export function Complain() {
                     e.preventDefault()
                     return false;
                   }} 
-                value={userData.q1}
+                value={userData.mobile}
                 onChange={postUserData}
                 required></textarea>
             </div>
