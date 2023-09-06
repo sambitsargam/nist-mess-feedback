@@ -1,5 +1,5 @@
 
-.quiz{
+.complain{
     height:auto;
     width: 100%;
   }
@@ -12,7 +12,18 @@
     top: 20%;
     display: flex;
 
-
+}
+img {
+    width: 35%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
 }
 
 .formbold-form-wrapper{
