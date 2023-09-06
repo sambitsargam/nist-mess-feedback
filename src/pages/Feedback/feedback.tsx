@@ -6,8 +6,8 @@ export function Feedback() {
     const [userData, setUserData] = useState({
         fullname: "",
         email: "",
-        roll: "",
-        q1: "",
+        mobile: "",
+        feedback: "",
 
 
     });
@@ -21,8 +21,8 @@ export function Feedback() {
 
     const submitData = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        const { fullname, email, roll, q1} = userData;
-        if (fullname && email && roll && q1) {
+        const { fullname, email, mobile, feedback} = userData;
+        if (fullname && email && mobile && feedback) {
             const res = fetch(
               "https://ccc-hiring-default-rtdb.firebaseio.com/userDataRecords.json",
               {
@@ -33,8 +33,8 @@ export function Feedback() {
                 body: JSON.stringify({
                   fullname,
                   email,
-                  roll,
-                  q1,
+                  mobile,
+                  feedback,
                 }),
               }
             );
@@ -43,8 +43,8 @@ export function Feedback() {
               setUserData({
                 fullname: "",
                 email: "",
-                roll: "",
-                q1: "",
+                mobile: "",
+                feedback: "",
               });
               alert("Answers Received🎉"); 
             } else {
@@ -76,31 +76,19 @@ export function Feedback() {
                     required
                 />
             </div>
-            <div className="formbold-mb-5">
-              <label className="formbold-form-label"> Roll Number </label>
-              <input
-                type="number"
-                name="roll"
-                id="roll"
-                placeholder="Enter your Nist Roll Number"
-                className="formbold-form-input"
-                value={userData.roll}
-                onChange={postUserData}
-              />
-            </div>
 
             <div className="formbold-mb-5">
-              <label className="formbold-form-label">Describe your Complain</label>
+              <label className="formbold-form-label">Describe your Feedback</label>
               <textarea
-                name="q1"
+                name="feedback"
                 id="q1"
-                placeholder="Type your Answer"
+                placeholder="Enter your Feedback"
                 className="que"
                 onPaste={(e)=>{
                     e.preventDefault()
                     return false;
                   }} 
-                value={userData.q1}
+                value={userData.feedback}
                 onChange={postUserData}
                 required></textarea>
             </div>
@@ -113,7 +101,7 @@ export function Feedback() {
       </div>
       <div className="footer flex-center">
     <h5>
-      Made with <i className="fa fa-heart" aria-hidden="true"></i> by  NIST CCC{" "}
+      Made with <i className="fa fa-heart" aria-hidden="true"></i> by  Sambit Sargam{" "}
     </h5>
     </div>
     </div>

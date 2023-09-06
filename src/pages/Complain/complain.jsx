@@ -1,7 +1,7 @@
 import "./complain.css";
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Web3Storage } from "web3.storage";
-import axios from "axios";
 
 export function Complain() {
 
@@ -12,8 +12,10 @@ const postUserData = (event) => {
   setUserData({ ...userData, [name]: value });
 };
 const [isloading, setisloading] = useState(false);
+// eslint-disable-next-line no-unused-vars
 const [isfileuploading, setisfileuploading] = useState(false);
 const [file, setFile] = useState("");
+// eslint-disable-next-line no-unused-vars
 const [filetype, setfiletype] = useState("");
 
 function getAccessToken() {
@@ -25,6 +27,7 @@ function makeStorageClient() {
 }
 
 // lets add a function to create a complain number with prefix NIST automatically when submiited
+// eslint-disable-next-line no-unused-vars
 function complainNumber() {
   var text = "";
   var possible = "0123456789";
@@ -43,6 +46,7 @@ async function onChangeCoverImage(e) {
   const client = makeStorageClient();
   const cid = await client.put([files]);
   const res = await client.get(cid);
+  // eslint-disable-next-line no-unused-vars
   const filess = await res.files();
   setFile(`https://${cid}.ipfs.dweb.link/${files.name}`);
   // console.log(file);
@@ -90,6 +94,7 @@ async function onChangeCoverImage(e) {
                     required
                 />
             </div>
+            {userData.who === 'Student' && (
             <div className="formbold-mb-5">
               <label className="formbold-form-label"> Roll Number </label>
               <input
@@ -102,6 +107,7 @@ async function onChangeCoverImage(e) {
                 onChange={postUserData}
               />
             </div>
+            )}
 
             <div className="formbold-mb-5">
               <label className="formbold-form-label">Upload your Image</label>
@@ -129,7 +135,6 @@ async function onChangeCoverImage(e) {
                     </div>
                   ) : (
                     <div>
-                      <h3></h3>
                       </div>
                   )}
                 </div>
