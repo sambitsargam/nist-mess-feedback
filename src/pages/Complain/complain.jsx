@@ -53,6 +53,7 @@ const handleSubmit = async (event) => {
     mobile: userData.mobile,
     roll: userData.roll,
     q1: userData.q1,
+    status: "Pending",
     fileUrl: file, // Assuming you want to store the file URL in Firebase
   };
 

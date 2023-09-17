@@ -3,95 +3,74 @@ import { useAuth } from "../../context/Auth/auth-context";
 import { useEffect, useState } from "react";
 import { useQuiz } from "../../context/Quiz/quiz-context";
 import { useNavigate } from "react-router-dom";
-import { collection, db, getDocs } from "../../firebase";
+
+// Define an interface to represent the structure of a complaint entry
+interface ComplaintEntry {
+  status: string;
+  complaintNumber: string;
+  name: string;
+  email: string;
+}
 
 export function Dashboard() {
   const { userInfo } = useAuth();
   const { dispatch, setLoader } = useQuiz();
   const navigate = useNavigate();
-  const [leaderData, setLeaderData] = useState([]);
-  useEffect(() => {
+
+  // Initialize complainData as an empty array
+  const [complainData, setComplainData] = useState<ComplaintEntry[]>([]);
+
+  async function fetchData() {
     setLoader(true);
-    dispatch({ type: "RESET" });
-    sessionStorage.removeItem("quizId");
-    (async () => {
-      let data: any = [];
-      const querySnapshot = await getDocs(collection(db, "scoreboard"));
-      querySnapshot.forEach((doc) => {
-        const docData = doc.data();
-        data = [...data, docData];
-      });
-      setLeaderData(data);
-    })();
-    setTimeout(() => setLoader(false), 1000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const progressData = leaderData.filter((ele: any) => ele?.email === userInfo.email);
-  const sortedLeaderboard = leaderData.sort((data1: any, data2: any) => data2.score - data1.score);
+
+    try {
+      // Fetch complain data from your external API
+      const email = userInfo.email;
+      console.log(email);
+      const response = await fetch(`http://localhost:3001/fetchByEmail/${email}`);
+      const data = await response.json();
+
+      const complaintEntries = Object.values(data) as ComplaintEntry[];
+      setComplainData(complaintEntries);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+
+    setLoader(false);
+  }
+
+  useEffect(() => {
+    // Call fetchData once when the component mounts
+    fetchData();
+  }, []); // An empty dependency array ensures it runs once on mount
+
   return (
     <div className="dash-container">
       <div className="dash">
-        <h2 className="dash-title">Progress Dashboard</h2>
-        {progressData.length === 0 ? (
+        <h2 className="dash-title">Complain Dashboard</h2>
+        {complainData.length === 0 ? (
           <div className="dash-play-now flex-center">
-            <h3>Looks like you haven't played any quiz !</h3>
+            <h3>No complaints found!</h3>
             <button
-              className="link-btn"
-              onClick={() => {
-                navigate("/");
-              }}
+              className="btn btn-primary"
+              onClick={() => navigate("/complain")}
             >
-              Play Now
-            </button>
-          </div>
+              Complain Now
+            </button>          </div>
         ) : (
-          <div className="score-container">
-            <div className="score-header">
-              <h3>Quiz Category</h3>
-              <h3>Score</h3>
-            </div>
-            {progressData.map((progress: any) => (
-              <div className="score-main">
-                <div className="score-main-header">
-                  <h4> {progress?.quizCategory}</h4>
-                  <h4>{progress?.score}</h4>
-                </div>
-                <button
-                  className="btn default"
-                  onClick={() => {
-                    sessionStorage.setItem("quizId", progress.quizId);
-                    navigate("/rules");
-                  }}
-                >
-                  Retake
-                </button>
+          <div className="complain-list">
+            {complainData.map((complaint, index) => (
+              <div className="complaint-card" key={index}>
+                <h4 className="complaint-number">Complaint Number: {complaint?.complaintNumber}</h4>
+                <p className="complaint-name">Name: {complaint?.name}</p>
+                <p className="complaint-email">Status: {complaint?.status}</p>
               </div>
             ))}
           </div>
         )}
       </div>
-      <div className="dash">
-        <h2 className="dash-title">
-          <i className="fa fa-trophy" aria-hidden="true"></i> Leaderboard
-        </h2>
-        <div className="score-container">
-          <div className="score-header">
-            <h3>Username</h3>
-            <h3>Quiz Category</h3>
-            <h3>Score</h3>
-          </div>
-          {sortedLeaderboard.map((progress: any) => (
-            <div className="score-main">
-              <div className="score-main-header">
-                <h4> {progress?.username}</h4>
-
-                <h4> {progress?.quizCategory}</h4>
-                <h4>{progress?.score}</h4>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
+
+           

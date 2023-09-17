@@ -39,3 +39,24 @@
     gap: 2rem;
     margin: 2rem;
 }
+
+.complaint-card {
+    border: 1px solid #3fc9e8;
+    padding: 10px;
+    margin-top: 15%;
+    margin-bottom: 10px;
+  }
+  
+  .complaint-number {
+    font-weight: bold;
+    color: #07579d;
+  }
+  
+  .complaint-name {
+    color: #0b83a4;
+  }
+  
+  .complaint-email {
+    color: #dd0c3d;
+  }
+  
