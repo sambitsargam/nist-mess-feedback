@@ -2,6 +2,7 @@ import "./complain.css";
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Web3Storage } from "web3.storage";
+import { Bars } from  'react-loader-spinner';
 
 export function Complain() {
 
@@ -67,7 +68,7 @@ const handleSubmit = async (event) => {
       // Handle a successful response here (e.g., show a success message)
       console.log("Complaint submitted successfully!");
       console.log("Complaint Number:", complaintNumber); // Log the generated complaint number
-      alert("Complaint ",complaintNumber,"submitted successfully!");
+      alert("Complaint submitted successfully!",complaintNumber);
     } else {
       // Handle any errors in the response
       console.error("Failed to submit complaint.");
@@ -104,6 +105,17 @@ async function onChangeCoverImage(e) {
       </div>
       <div className="formbold-main-wrapper">
         <div className="formbold-form-wrapper">
+          { isSubmit ? (
+            <Bars
+  height="80"
+  width="800"
+  color="lightblue"
+  ariaLabel="bars-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+/>
+            ) : (
           <form method="POST">
             <div className="formbold-mb-5">
               <label className="formbold-form-label">Who are You?</label>
@@ -204,6 +216,7 @@ async function onChangeCoverImage(e) {
               <button className="formbold-btn" onClick={handleSubmit}>Submit</button>
             </div>
           </form>
+          )}
         </div>
       </div>
       <div className="footer flex-center">

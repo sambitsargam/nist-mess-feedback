@@ -16,6 +16,7 @@
     "react-dom": "^18.0.0",
     "react-firebase-hooks": "^5.0.3",
     "react-google-button": "^0.7.2",
+    "react-loader-spinner": "^5.4.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^8.2.0",
