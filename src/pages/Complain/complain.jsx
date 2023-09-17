@@ -56,7 +56,10 @@ const handleSubmit = async (event) => {
   try {
     const response = await fetch("https://nist-mess-default-rtdb.firebaseio.com/complain.json", {
       method: "POST",
-      body: formData,
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     if (response.ok) {
