@@ -1,97 +1,95 @@
 .quiz-home-container {
     margin-top: 4rem;
     flex-grow: 1;
-  }
-  
-  .home-img {
+}
+
+.home-img {
     height: 24rem;
     width: 24rem;
-    /* Remove any border styling */
     border: none;
-  }
-  .main-header {
+
+}
+a {
+    height: auto;
+    width: auto;
+}
+
+.main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .home-text {
-    line-height: 2.5rem;
-    text-align: left;
-  }
-  
-  .home-buttons {
+}
+.home-buttons {
     margin-top: 1rem;
     display: flex;
     gap: 1rem;
+    justify-content: center;
   }
-  
-  .link-btn {
+.home-text {
+    line-height: 3.5rem;
+    text-align: left;
+}
+
+.link-btn {
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    background-color: var(--md-blue);
+    padding: 1rem 1.5rem;
+    background-color: rgb(2, 51, 67);
     color: white;
-    border-radius: 5px;
+    border-radius: 12px;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease;
   }
   
   .link-btn:hover {
-    background-color: var(--dark-blue);
+    background-color: rgb(171, 215, 105);
   }
   
-  .footer {
+@media screen and (max-width:840px) {
+    .main-header {
+        flex-wrap: wrap-reverse;
+    }
+}
+
+.footer {
     margin-top: 3rem;
     border-top: 0.01px solid var(--borderGrey);
     flex-direction: column;
     gap: 1rem;
     padding: 1rem 0 1rem 0.5rem;
-  }
-  
-  .icon-bar {
+}
+
+.icon-bar {
     display: flex;
     gap: 1.5rem;
     font-size: 1.5rem;
-  }
-  
-  @media screen and (max-width: 550px) {
+}
+
+@media screen and (max-width:550px) {
     body {
-      width: 100%;
-      font-size: 80%;
+        width: 100%;
+        font-size: 80%;
     }
-  
+
     .navbar {
-      padding: 1rem 0.5rem;
+        padding: 1rem 0.5rem
     }
-  
+
     .home-img {
-      width: 15rem;
-      height: 15rem;
+        width: 15rem;
+        height: 15rem;
     }
-  
+
     .main-header {
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
+        justify-content: center;
     }
-  
+
     .home-text {
-      text-align: center;
+        text-align: center;
     }
-  
+
     .home-text h1 {
-      padding-bottom: 1rem;
-      line-height: 2rem;
-      font-size: 1.5rem;
+        padding-bottom: 1rem;
+        line-height: 2rem;
+        font-size: 1.5rem;
     }
-  
-    .home-buttons {
-      flex-direction: column;
-    }
-  
-    .link-btn {
-      width: 100%;
-      text-align: center;
-    }
-  }
-  
+}
