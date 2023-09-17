@@ -12,11 +12,9 @@ const postUserData = (event) => {
   setUserData({ ...userData, [name]: value });
 };
 const [isloading, setisloading] = useState(false);
-// eslint-disable-next-line no-unused-vars
-const [isfileuploading, setisfileuploading] = useState(false);
+const [isSubmit, setSubmit] = useState(false);
+const [isSubmited, setSubmited] = useState(false);
 const [file, setFile] = useState("");
-// eslint-disable-next-line no-unused-vars
-const [filetype, setfiletype] = useState("");
 
 function getAccessToken() {
   return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGIyMDE1N0IyODJiMkQ5ZThFMzY5MjBGMDhiY0EyZkVhMzRmRTBmYjQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYyMjU5MjQ3MTEsIm5hbWUiOiJtZW50bGUifQ.wjCD8ygNde_wiV95BPDJFe7KvKcysTTwvz4RcDMwJEw";
@@ -36,23 +34,24 @@ function complainNumber() {
   return "NIST" + text;
 }
 
+const complaintNumber = complainNumber();
 
 const handleSubmit = async (event) => {
   event.preventDefault();
-
+  setSubmit(true);
+  setSubmited(false);
   // Generate a complaint number
-  const complaintNumber = complainNumber();
-
   // Prepare the data to be sent
-  const formData = new FormData();
-  formData.append("complaintNumber", complaintNumber); // Add the complaint number to the form data
-  formData.append("who", userData.who);
-  formData.append("mobile", userData.mobile);
-  formData.append("roll", userData.roll);
-  formData.append("q1", userData.q1);
-  formData.append("file", file);
+  const formData = {
+    complaintNumber, // Add the complaint number to the form data
+    who: userData.who,
+    mobile: userData.mobile,
+    roll: userData.roll,
+    q1: userData.q1,
+    fileUrl: file, // Assuming you want to store the file URL in Firebase
+  };
 
-  // Make a POST request to the API endpoint
+  // Make a POST request to the Firebase Realtime Database API
   try {
     const response = await fetch("https://nist-mess-default-rtdb.firebaseio.com/complain.json", {
       method: "POST",
@@ -63,9 +62,12 @@ const handleSubmit = async (event) => {
     });
 
     if (response.ok) {
+      setSubmit(false);
+      setSubmited(true);
       // Handle a successful response here (e.g., show a success message)
       console.log("Complaint submitted successfully!");
       console.log("Complaint Number:", complaintNumber); // Log the generated complaint number
+      alert("Complaint ",complaintNumber,"submitted successfully!");
     } else {
       // Handle any errors in the response
       console.error("Failed to submit complaint.");
@@ -144,6 +146,7 @@ async function onChangeCoverImage(e) {
                 className="formbold-form-input"
                 value={userData.roll}
                 onChange={postUserData}
+                required
               />
             </div>
             )}
