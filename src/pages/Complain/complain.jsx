@@ -3,9 +3,10 @@ import "./complain.css";
 import React, { useState } from "react";
 import { Web3Storage } from "web3.storage";
 import { Bars } from  'react-loader-spinner';
+import { useAuth } from "../../context/Auth/auth-context";
 
 export function Complain() {
-
+const { userInfo } = useAuth();
 const [userData, setUserData] = useState({ mobile: "", roll: "",who:"", q1: "" });
 const postUserData = (event) => {
   const name = event.target.name;
@@ -46,6 +47,9 @@ const handleSubmit = async (event) => {
   const formData = {
     complaintNumber, // Add the complaint number to the form data
     who: userData.who,
+    email: userInfo.email,
+    name: userInfo.name,
+    profilePic: userInfo.photo,
     mobile: userData.mobile,
     roll: userData.roll,
     q1: userData.q1,
@@ -54,7 +58,7 @@ const handleSubmit = async (event) => {
 
   // Make a POST request to the Firebase Realtime Database API
   try {
-    const response = await fetch("https://nist-mess-default-rtdb.firebaseio.com/complain.json", {
+    const response = await fetch("http://localhost:3001/saveData", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
@@ -69,6 +73,7 @@ const handleSubmit = async (event) => {
       console.log("Complaint submitted successfully!");
       console.log("Complaint Number:", complaintNumber); // Log the generated complaint number
       alert("Complaint submitted successfully!",complaintNumber);
+      window.location.reload();
     } else {
       // Handle any errors in the response
       console.error("Failed to submit complaint.");
@@ -164,7 +169,7 @@ async function onChangeCoverImage(e) {
             )}
 
             <div className="formbold-mb-5">
-              <label className="formbold-form-label">Upload your Image</label>
+              <label className="formbold-form-label">Upload Your File</label>
               <input
                 type="file"
                 name="file"

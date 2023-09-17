@@ -4,7 +4,7 @@ import { useTheme } from "../../context/Theme/theme-context";
 import "./Navbar.css";
 
 export function Navbar() {
-  const { token } = useAuth();
+  const { token, userInfo } = useAuth();
   const navigate = useNavigate();
   const { changeTheme } = useTheme();
   const userHandler = () => {
@@ -16,7 +16,7 @@ export function Navbar() {
         <Link to="/">
           <h3 className="nav-title" title="Home">
             NIST MESS
-          </h3>
+          </h3> 
         </Link>
       </div>
       <div className="navbar-right">
