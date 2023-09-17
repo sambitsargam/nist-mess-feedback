@@ -1,4 +1,4 @@
-import { Action, QuizState } from "../types/quizcontext.types";
+import { Action, QuizState } from "../types/quiz.types";
 
 export const initialState = {
   currentQue: 1,

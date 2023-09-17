@@ -5,7 +5,7 @@ import { Web3Storage } from "web3.storage";
 
 export function Complain() {
 
-const [userData, setUserData] = useState({ mobile: "", roll: "", q1: "" });
+const [userData, setUserData] = useState({ mobile: "", roll: "",who:"", q1: "" });
 const postUserData = (event) => {
   const name = event.target.name;
   const value = event.target.value;
@@ -36,6 +36,42 @@ function complainNumber() {
   return "NIST" + text;
 }
 
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  // Generate a complaint number
+  const complaintNumber = complainNumber();
+
+  // Prepare the data to be sent
+  const formData = new FormData();
+  formData.append("complaintNumber", complaintNumber); // Add the complaint number to the form data
+  formData.append("who", userData.who);
+  formData.append("mobile", userData.mobile);
+  formData.append("roll", userData.roll);
+  formData.append("q1", userData.q1);
+  formData.append("file", file);
+
+  // Make a POST request to the API endpoint
+  try {
+    const response = await fetch("https://nist-mess-default-rtdb.firebaseio.com/complain.json", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      // Handle a successful response here (e.g., show a success message)
+      console.log("Complaint submitted successfully!");
+      console.log("Complaint Number:", complaintNumber); // Log the generated complaint number
+    } else {
+      // Handle any errors in the response
+      console.error("Failed to submit complaint.");
+    }
+  } catch (error) {
+    // Handle network errors
+    console.error("Network error:", error);
+  }
+};
 
 
 
@@ -153,13 +189,13 @@ async function onChangeCoverImage(e) {
                     e.preventDefault()
                     return false;
                   }} 
-                value={userData.mobile}
+                value={userData.q1}
                 onChange={postUserData}
                 required></textarea>
             </div>
             
             <div>
-              <button className="formbold-btn" >Submit</button>
+              <button className="formbold-btn" onClick={handleSubmit}>Submit</button>
             </div>
           </form>
         </div>
