@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./Dashboard.css";
 import { useAuth } from "../../context/Auth/auth-context";
 import { useEffect, useState } from "react";
@@ -14,7 +15,7 @@ interface ComplaintEntry {
 
 export function Dashboard() {
   const { userInfo } = useAuth();
-  const { dispatch, setLoader } = useQuiz();
+  const { setLoader } = useQuiz();
   const navigate = useNavigate();
 
   // Initialize complainData as an empty array

@@ -1,8 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./admin.css";
-import { useAuth } from "../../context/Auth/auth-context";
 import { useEffect, useState } from "react";
 import { useQuiz } from "../../context/Quiz/quiz-context";
-import { useNavigate } from "react-router-dom";
 
 // Define an interface to represent the structure of a complaint entry
 interface ComplaintEntry {
@@ -13,9 +12,7 @@ interface ComplaintEntry {
 }
 
 export function Admin() {
-  const { userInfo } = useAuth();
-  const { dispatch, setLoader } = useQuiz();
-  const navigate = useNavigate();
+  const { setLoader } = useQuiz();
 
   // Initialize complainData as an empty array
   const [complainData, setComplainData] = useState<ComplaintEntry[]>([]);

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./complain.css";
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
@@ -112,6 +113,7 @@ async function onChangeCoverImage(e) {
       <div className="formbold-main-wrapper">
         <div className="formbold-form-wrapper">
           { isSubmit ? (
+          <div id="loaders">
             <Bars
   height="80"
   width="800"
@@ -121,6 +123,7 @@ async function onChangeCoverImage(e) {
   wrapperClass=""
   visible={true}
 />
+</div>
             ) : (
           <form method="POST">
             <div className="formbold-mb-5">

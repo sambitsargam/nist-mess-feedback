@@ -4,7 +4,7 @@ import { useTheme } from "../../context/Theme/theme-context";
 import "./Navbar.css";
 
 export function Navbar() {
-  const { token, userInfo } = useAuth();
+  const { token } = useAuth();
   const navigate = useNavigate();
   const { changeTheme } = useTheme();
   const userHandler = () => {
