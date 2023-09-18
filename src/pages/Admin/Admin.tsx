@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "./admin.css";
 import { useAuth } from "../../context/Auth/auth-context";
 import { useEffect, useState } from "react";
 import { useQuiz } from "../../context/Quiz/quiz-context";
@@ -12,7 +12,7 @@ interface ComplaintEntry {
   email: string;
 }
 
-export function Dashboard() {
+export function Admin() {
   const { userInfo } = useAuth();
   const { dispatch, setLoader } = useQuiz();
   const navigate = useNavigate();
@@ -24,10 +24,7 @@ export function Dashboard() {
     setLoader(true);
 
     try {
-      // Fetch complain data from your external API
-      const email = userInfo.email;
-      console.log(email);
-      const response = await fetch(`http://localhost:3001/fetchByEmail/${email}`);
+      const response = await fetch(`http://localhost:3001/fetchByStatus/pending`);
       const data = await response.json();
 
       const complaintEntries = Object.values(data) as ComplaintEntry[];
@@ -48,26 +45,15 @@ export function Dashboard() {
     <div className="dash-container">
       <div className="dash">
         <h2 className="dash-title">Complain Dashboard</h2>
-        {complainData.length === 0 ? (
-          <div className="dash-play-now flex-center">
-            <h3>No complaints found!</h3>
-            <button
-              className="btn btn-primary"
-              onClick={() => navigate("/complain")}
-            >
-              Complain Now
-            </button>          </div>
-        ) : (
           <div className="complain-list">
             {complainData.map((complaint, index) => (
               <div className="complaint-card" key={index}>
-                <h4 className="complaint-number">Complaint Number: <strong>{complaint?.complaintNumber}</strong></h4>
+                <h4 className="complaint-number">Complaint Number: {complaint?.complaintNumber}</h4>
                 <p className="complaint-name">Name: {complaint?.name}</p>
                 <p className="complaint-email">Status: {complaint?.status}</p>
               </div>
             ))}
           </div>
-        )}
       </div>
     </div>
   );

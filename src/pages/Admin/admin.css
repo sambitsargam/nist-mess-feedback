@@ -1,0 +1,62 @@
+.score-container {
+    margin: 2rem 0;
+}
+
+.dash{
+    margin: 3rem 0 4rem 0;
+}
+.dash-title {
+    color: var(--link);
+    text-align: center;
+}
+
+
+.score-header,
+.score-main-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.score-header {
+    padding: 1rem;
+}
+
+.score-main {
+    padding: 1rem;
+    border: 1px solid var(--borderGrey);
+    border-radius: 12px;
+    margin: 1rem 0
+}
+
+.score-main .btn {
+    border-radius: 20px;
+    padding: 0.25rem 1rem;
+    margin-top: 0.5rem
+}
+
+.dash-play-now {
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem;
+}
+
+.complaint-card {
+    border: 1px solid #3fc9e8;
+    padding: 10px;
+    margin-top: 15%;
+    margin-bottom: 10px;
+  }
+  
+  .complaint-number {
+    font-weight: bold;
+    color: #07579d;
+  }
+  
+  .complaint-name {
+    color: #0b83a4;
+  }
+  
+  .complaint-email {
+    color: #dd0c3d;
+  }
+  

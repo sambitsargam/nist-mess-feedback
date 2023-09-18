@@ -31,7 +31,7 @@ function makeStorageClient() {
 function complainNumber() {
   var text = "";
   var possible = "0123456789";
-  for (var i = 0; i < 6; i++)
+  for (var i = 0; i < 4; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   return "NIST" + text;
 }
@@ -53,7 +53,7 @@ const handleSubmit = async (event) => {
     mobile: userData.mobile,
     roll: userData.roll,
     q1: userData.q1,
-    status: "Pending",
+    status: "pending",
     fileUrl: file, // Assuming you want to store the file URL in Firebase
   };
 
