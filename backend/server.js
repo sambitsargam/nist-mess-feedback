@@ -55,6 +55,23 @@ app.get("/fetchByEmail/:email", async (req, res) => {
     }
   });
 
+app.get("/fetchByStatus/:status", async (req, res) => {
+    try {
+        const { status } = req.params;
+        const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+        const data = response.data;
+    
+        // Find and filter data for the specified email
+        const specificData = Object.values(data).filter((item) => item.status === status);
+    
+        res.json(specificData);
+    }
+    catch (error) {
+        console.error("Error fetching data from Firebase:", error.message);
+        res.status(500).json({ error: "Failed to fetch data from Firebase" });
+    }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
