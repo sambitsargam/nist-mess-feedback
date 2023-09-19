@@ -9,6 +9,8 @@ interface ComplaintEntry {
   complaintNumber: string;
   name: string;
   email: string;
+  q1: string;
+  img: string;
 }
 
 export function Admin() {
@@ -38,22 +40,26 @@ export function Admin() {
     fetchData();
   }, []); // An empty dependency array ensures it runs once on mount
 
+  // Function to open the details in a new tab
+  function openDetailsInNewTab(complaint: ComplaintEntry) {
+    window.open(`/complaint-details/${complaint.complaintNumber}`, "_blank");
+  }
+
   return (
     <div className="dash-container">
       <div className="dash">
         <h2 className="dash-title">Complain Dashboard</h2>
-          <div className="complain-list">
-            {complainData.map((complaint, index) => (
-              <div className="complaint-card" key={index}>
-                <h4 className="complaint-number">Complaint Number: {complaint?.complaintNumber}</h4>
-                <p className="complaint-name">Name: {complaint?.name}</p>
-                <p className="complaint-email">Status: {complaint?.status}</p>
-              </div>
-            ))}
-          </div>
+        <div className="complain-list">
+          {complainData.map((complaint, index) => (
+            <div className="complaint-card" key={index}>
+              <h4 className="complaint-number">Complaint Number: {complaint?.complaintNumber}</h4>
+              <p className="complaint-name">Name: {complaint?.name}</p>
+              <p className="complaint-email">Status: {complaint?.status}</p>
+              <button onClick={() => openDetailsInNewTab(complaint)}>View Details</button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
-
-           

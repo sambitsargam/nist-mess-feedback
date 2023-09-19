@@ -72,6 +72,45 @@ app.get("/fetchByStatus/:status", async (req, res) => {
     }
 });
 
+// create that able to update the status
+app.put("/updateStatus/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body;
+        const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+        const data = response.data;
+        const specificData = Object.values(data).filter((item) => item.id === id);
+        const specificDataKey = Object.keys(data).filter((item) => item === id);
+        const updateData = {
+            ...specificData[0],
+            status: status
+        }
+        const updateResponse = await axios.put(`https://nist-mess-default-rtdb.firebaseio.com/complain/${specificDataKey[0]}.json`, updateData);
+        res.json(updateResponse.data);
+    }
+    catch (error) {
+        console.error("Error fetching data from Firebase:", error.message);
+        res.status(500).json({ error: "Failed to fetch data from Firebase" });
+    }
+});
+
+// fetch details by complaintNumber
+app.get("/fetchByComplaintNumber/:complaintNumber", async (req, res) => {
+    try {
+        const { complaintNumber } = req.params;
+        const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+        const data = response.data;
+        const specificData = Object.values(data).filter((item) => item.complaintNumber === complaintNumber);
+        res.json(specificData);
+    }
+    catch (error) {
+        console.error("Error fetching data from Firebase:", error.message);
+        res.status(500).json({ error: "Failed to fetch data from Firebase" });
+    }
+});
+
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

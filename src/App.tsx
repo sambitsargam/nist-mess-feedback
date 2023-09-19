@@ -6,6 +6,7 @@ import { Dashboard, Home, Rule, SignIn, UserProfile, Feedback, Complain, Admin }
 import "react-toastify/dist/ReactToastify.css";
 import { useQuiz } from "./context/Quiz/quiz-context";
 import { useTheme } from "./context/Theme/theme-context";
+import ComplaintDetails  from "./component/ComplaintDetails";
 function App() {
   const { loader, modal } = useQuiz();
   const { theme } = useTheme();
@@ -81,6 +82,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/complaint-details/:complaintNumber" element={<ComplaintDetails />} />
         </Routes>
       </div>
     </div>
