@@ -54,9 +54,13 @@ const ComplaintDetails: React.FC<ComplaintDetailsProps> = () => {
       <p>Complaint Number: {complaintNumber}</p>
       <p>Status: {complaintDetails.status}</p>
       <p>Q1: {complaintDetails.q1}</p>
+      <br></br>
+      <h4> Attached File</h4>
+      <button className="link-btn">
       <a href={complaintDetails.fileUrl} download>
-              Download Attached File
+             Open File
             </a>
+            </button>
 
     </div>
   );

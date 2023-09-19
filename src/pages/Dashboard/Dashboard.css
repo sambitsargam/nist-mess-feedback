@@ -43,8 +43,7 @@
 .complaint-card {
     border: 1px solid #3fc9e8;
     padding: 10px;
-    margin-top: 15%;
-    margin-bottom: 10px;
+    margin: 10px 0; /* Adjust the top and bottom margin to reduce the gap */    
   }
   
   .complaint-number {
