@@ -72,27 +72,36 @@ app.get("/fetchByStatus/:status", async (req, res) => {
     }
 });
 
-// create that able to update the status
-app.put("/updateStatus/:id", async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { status } = req.body;
-        const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
-        const data = response.data;
-        const specificData = Object.values(data).filter((item) => item.id === id);
-        const specificDataKey = Object.keys(data).filter((item) => item === id);
-        const updateData = {
-            ...specificData[0],
-            status: status
-        }
-        const updateResponse = await axios.put(`https://nist-mess-default-rtdb.firebaseio.com/complain/${specificDataKey[0]}.json`, updateData);
-        res.json(updateResponse.data);
+app.put("/updateStatus/:complaintNumber", async (req, res) => {
+  try {
+    const { complaintNumber } = req.params;
+
+    // Fetch the data from Firebase based on the complaint number
+    const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+    const data = response.data;
+
+    // Find the specific complaint entry with the given complaintNumber
+    const specificData = Object.values(data).find((item) => item.complaintNumber === complaintNumber);
+
+    if (!specificData) {
+      return res.status(404).json({ error: "Complaint not found" });
     }
-    catch (error) {
-        console.error("Error fetching data from Firebase:", error.message);
-        res.status(500).json({ error: "Failed to fetch data from Firebase" });
-    }
+
+    // Update the status to "accepted"
+    specificData.status = "accepted";
+
+    // Update the data in Firebase
+    const response1 = await axios.put(`https://nist-mess-default-rtdb.firebaseio.com/complain/${specificData.id}.json`, specificData);
+
+    res.json(response1.data);
+  } catch (error) {
+    console.error("Error updating status:", error.message);
+    res.status(500).json({ error: "Failed to update status" });
+  }
 });
+
+
+
 
 // fetch details by complaintNumber
 app.get("/fetchByComplaintNumber/:complaintNumber", async (req, res) => {
