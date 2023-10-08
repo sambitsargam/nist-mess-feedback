@@ -37,27 +37,28 @@ const ComplaintDetails: React.FC<ComplaintDetailsProps> = () => {
   // Function to handle status update
   async function handleStatusUpdate() {
     try {
-      const response = await fetch(`http://localhost:3001/updateStatus/${complaintDetails.id}`, {
+      const response = await fetch(`http://localhost:3001/updateStatus/NIST5490`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ status: updatedStatus }),
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
+  
       // Update the local complaintDetails state with the new status
       setComplaintDetails({ ...complaintDetails, status: updatedStatus });
-
+  
       // Clear the updatedStatus state
       setUpdatedStatus("");
     } catch (error) {
       console.error("Error updating status:", error);
     }
   }
+  
 
   if (!complaintDetails) {
     return <div>Loading...</div>; // You can render a loading indicator here

@@ -4,12 +4,13 @@ const axios = require("axios");
 const app = express();
 const port = 3001;
 
+
 app.use(express.json());
 
 // Middleware to allow Cross-Origin Resource Sharing (CORS) for all routes
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
@@ -17,7 +18,7 @@ app.use((req, res, next) => {
 // Fetch data from Firebase
 app.get("/fetchData", async (req, res) => {
   try {
-    const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+    const response = await axios.get("https://nistmess-default-rtdb.firebaseio.com/complain.json");
     const data = response.data;
     res.json(data);
   } catch (error) {
@@ -30,7 +31,7 @@ app.get("/fetchData", async (req, res) => {
 app.post("/saveData", async (req, res) => {
   try {
     const dataToSave = req.body;
-    const response = await axios.post("https://nist-mess-default-rtdb.firebaseio.com/complain.json", dataToSave);
+    const response = await axios.post("https://nistmess-default-rtdb.firebaseio.com/complain.json", dataToSave);
     res.json(response.data);
   } catch (error) {
     console.error("Error saving data to Firebase:", error.message);
@@ -42,7 +43,7 @@ app.post("/saveData", async (req, res) => {
 app.get("/fetchByEmail/:email", async (req, res) => {
     try {
       const { email } = req.params;
-      const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+      const response = await axios.get("https://nistmess-default-rtdb.firebaseio.com/complain.json");
       const data = response.data;
   
       // Find and filter data for the specified email
@@ -58,7 +59,7 @@ app.get("/fetchByEmail/:email", async (req, res) => {
 app.get("/fetchByStatus/:status", async (req, res) => {
     try {
         const { status } = req.params;
-        const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+        const response = await axios.get("https://nistmess-default-rtdb.firebaseio.com/complain.json");
         const data = response.data;
     
         // Find and filter data for the specified email
@@ -72,30 +73,26 @@ app.get("/fetchByStatus/:status", async (req, res) => {
     }
 });
 
+// Update status to Accepted
 app.put("/updateStatus/:complaintNumber", async (req, res) => {
   try {
     const { complaintNumber } = req.params;
-
-    // Fetch the data from Firebase based on the complaint number
-    const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+    // Fetch the complaint with the specified complaintNumber
+    const response = await axios.get("https://nistmess-default-rtdb.firebaseio.com/complain.json");
     const data = response.data;
-
-    // Find the specific complaint entry with the given complaintNumber
     const specificData = Object.values(data).find((item) => item.complaintNumber === complaintNumber);
 
-    if (!specificData) {
-      return res.status(404).json({ error: "Complaint not found" });
+    // Check if a complaint with the specified complaintNumber exists
+    if (specificData) {
+      // Update the status to "Accepted" and save it back to the database
+      specificData.status = "Accepted";
+      const updateResponse = await axios.put(`https://nistmess-default-rtdb.firebaseio.com/complain/${specificData.id}.json`, specificData);
+      res.json(updateResponse.data);
+    } else {
+      res.status(404).json({ error: "Complaint not found" });
     }
-
-    // Update the status to "accepted"
-    specificData.status = "accepted";
-
-    // Update the data in Firebase
-    const response1 = await axios.put(`https://nist-mess-default-rtdb.firebaseio.com/complain/${specificData.id}.json`, specificData);
-
-    res.json(response1.data);
   } catch (error) {
-    console.error("Error updating status:", error.message);
+    console.error("Error updating status:", error);
     res.status(500).json({ error: "Failed to update status" });
   }
 });
@@ -107,7 +104,7 @@ app.put("/updateStatus/:complaintNumber", async (req, res) => {
 app.get("/fetchByComplaintNumber/:complaintNumber", async (req, res) => {
     try {
         const { complaintNumber } = req.params;
-        const response = await axios.get("https://nist-mess-default-rtdb.firebaseio.com/complain.json");
+        const response = await axios.get("https://nistmess-default-rtdb.firebaseio.com/complain.json");
         const data = response.data;
         const specificData = Object.values(data).filter((item) => item.complaintNumber === complaintNumber);
         res.json(specificData);
