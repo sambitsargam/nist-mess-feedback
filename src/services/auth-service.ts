@@ -42,9 +42,7 @@ const loginUserWithGoogle = async () => {
         await addDoc(collection(db, "users"), {
             uid: user.uid,
             name: user.displayName,
-            email: user.email,
-            scores: [
-            ]
+            email: user.email
         });
     }
     return res;

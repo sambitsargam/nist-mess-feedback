@@ -90,9 +90,7 @@ const loginUserWithGoogle = async () => {
             uid: user.uid,
             name: user.displayName,
             email: user.email,
-            photo: user.photoURL,
-            scores: [
-            ]
+            photo: user.photoURL
         });
       }
     } catch (error: any) {
