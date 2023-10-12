@@ -37,7 +37,7 @@ const ComplaintDetails: React.FC<ComplaintDetailsProps> = () => {
   // Function to handle status update
   async function handleStatusUpdate() {
     try {
-      const response = await fetch(`http://localhost:3001/updateStatus/NIST5490`, {
+      const response = await fetch(`http://localhost:3001/updateStatus/${complaintNumber}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

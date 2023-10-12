@@ -73,21 +73,25 @@ app.get("/fetchByStatus/:status", async (req, res) => {
     }
 });
 
-// Update status to Accepted
 app.put("/updateStatus/:complaintNumber", async (req, res) => {
   try {
     const { complaintNumber } = req.params;
+
     // Fetch the complaint with the specified complaintNumber
     const response = await axios.get("https://nistmess-default-rtdb.firebaseio.com/complain.json");
     const data = response.data;
+
+    // Find the complaint using the specified complaintNumber
     const specificData = Object.values(data).find((item) => item.complaintNumber === complaintNumber);
 
     // Check if a complaint with the specified complaintNumber exists
     if (specificData) {
-      // Update the status to "Accepted" and save it back to the database
+      // Update the status to "Accepted"
       specificData.status = "Accepted";
-      const updateResponse = await axios.put(`https://nistmess-default-rtdb.firebaseio.com/complain/${specificData.id}.json`, specificData);
-      res.json(updateResponse.data);
+
+      // Use the specificData's key as the unique identifier for the PUT request
+     await axios.put(`https://nistmess-default-rtdb.firebaseio.com/complain.json`, data);
+      res.json({ message: "Status updated to Accepted" });
     } else {
       res.status(404).json({ error: "Complaint not found" });
     }
@@ -96,6 +100,7 @@ app.put("/updateStatus/:complaintNumber", async (req, res) => {
     res.status(500).json({ error: "Failed to update status" });
   }
 });
+
 
 
 
