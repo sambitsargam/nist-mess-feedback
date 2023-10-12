@@ -8,7 +8,7 @@ export function Home() {
         <div className="main-header">
           <div className="home-text">
             <h1>Welcome to the Mess Feedback and Complaint System</h1>
-            <h2>Have a complaint or want to provide feedback?</h2>
+            <h2>Have a complaint or a feedback?</h2>
             <p>Choose an option below:</p>
             <div className="home-buttons">
               <a href="complain" className="link-btn">
