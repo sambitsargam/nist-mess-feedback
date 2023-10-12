@@ -23,7 +23,7 @@ export function AdminDashboard() {
     setLoader(true);
 
     try {
-      const response = await fetch(`http://localhost:3001/fetchByStatus/pending`);
+      const response = await fetch(`http://localhost:3001/fetchByStatus/Accepted`);
       const data = await response.json();
 
       const complaintEntries = Object.values(data) as ComplaintEntry[];

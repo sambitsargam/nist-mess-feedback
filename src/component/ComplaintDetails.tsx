@@ -58,6 +58,31 @@ const ComplaintDetails: React.FC<ComplaintDetailsProps> = () => {
       console.error("Error updating status:", error);
     }
   }
+
+  // function to reject the complaint
+   async function HandleReject() {
+    try {
+      const response = await fetch(`http://localhost:3001/updateStatusToRejected/${complaintNumber}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: updatedStatus }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      // Update the local complaintDetails state with the new status
+      setComplaintDetails({ ...complaintDetails, status: updatedStatus });
+  
+      // Clear the updatedStatus state
+      setUpdatedStatus("");
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  }
   
 
   if (!complaintDetails) {
@@ -90,16 +115,12 @@ const ComplaintDetails: React.FC<ComplaintDetailsProps> = () => {
             </button>
       
       <br></br>
+      <br></br>
       <div className="status-update-section">
-        <label>Update Status:</label>
-        <input
-          type="text"
-          value={updatedStatus}
-          onChange={(e) => setUpdatedStatus(e.target.value)}
-        />
-        <button onClick={handleStatusUpdate}>Update</button>
-      </div>
-
+        <h4>Update Status</h4>
+        <button className="link-btn" onClick={handleStatusUpdate}>Accept</button>
+        <button className="link-btn" onClick={HandleReject}>Reject</button>
+        </div>
     </div>
   );
 }
