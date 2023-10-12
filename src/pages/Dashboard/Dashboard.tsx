@@ -28,7 +28,7 @@ export function Dashboard() {
       // Fetch complain data from your external API
       const email = userInfo.email;
       console.log(email);
-      const response = await fetch(`http://localhost:3001/fetchByEmail/${email}`);
+      const response = await fetch(`https://nist-mess.onrender.com/fetchByEmail/${email}`);
       const data = await response.json();
 
       const complaintEntries = Object.values(data) as ComplaintEntry[];

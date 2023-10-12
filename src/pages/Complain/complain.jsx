@@ -60,7 +60,7 @@ const handleSubmit = async (event) => {
 
   // Make a POST request to the Firebase Realtime Database API
   try {
-    const response = await fetch("http://localhost:3001/saveData", {
+    const response = await fetch("https://nist-mess.onrender.com/saveData", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {

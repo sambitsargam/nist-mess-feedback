@@ -23,7 +23,7 @@ export function AdminDashboard() {
     setLoader(true);
 
     try {
-      const response = await fetch(`http://localhost:3001/fetchByStatus/Accepted`);
+      const response = await fetch(`https://nist-mess.onrender.com/fetchByStatus/Accepted`);
       const data = await response.json();
 
       const complaintEntries = Object.values(data) as ComplaintEntry[];

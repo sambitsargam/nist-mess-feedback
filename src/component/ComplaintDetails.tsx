@@ -15,7 +15,7 @@ const ComplaintDetails: React.FC<ComplaintDetailsProps> = () => {
     // Fetch the complaint details using the complaint number
     async function fetchComplaintDetails() {
       try {
-        const response = await fetch(`http://localhost:3001/fetchByComplaintNumber/${complaintNumber}`);
+        const response = await fetch(`https://nist-mess.onrender.com/fetchByComplaintNumber/${complaintNumber}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -37,7 +37,7 @@ const ComplaintDetails: React.FC<ComplaintDetailsProps> = () => {
   // Function to handle status update
   async function handleStatusUpdate() {
     try {
-      const response = await fetch(`http://localhost:3001/updateStatus/${complaintNumber}`, {
+      const response = await fetch(`https://nist-mess.onrender.com/updateStatus/${complaintNumber}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ const ComplaintDetails: React.FC<ComplaintDetailsProps> = () => {
   // function to reject the complaint
    async function HandleReject() {
     try {
-      const response = await fetch(`http://localhost:3001/updateStatusToRejected/${complaintNumber}`, {
+      const response = await fetch(`https://nist-mess.onrender.com/updateStatusToRejected/${complaintNumber}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
