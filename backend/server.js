@@ -101,9 +101,65 @@ app.put("/updateStatus/:complaintNumber", async (req, res) => {
   }
 });
 
+// lets update the status to rejected
+app.put("/updateStatusToRejected/:complaintNumber", async (req, res) => {
+  try {
+    const { complaintNumber } = req.params;
 
+    // Fetch the complaint with the specified complaintNumber
+    const response = await axios.get("https://nistmess-default-rtdb.firebaseio.com/complain.json");
+    const data = response.data;
 
+    // Find the complaint using the specified complaintNumber
+    const specificData = Object.values(data).find((item) => item.complaintNumber === complaintNumber);
 
+    // Check if a complaint with the specified complaintNumber exists
+    if (specificData) {
+      // Update the status to "Rejected"
+      specificData.status = "Rejected";
+
+      // Use the specificData's key as the unique identifier for the PUT request
+     await axios.put(`https://nistmess-default-rtdb.firebaseio.com/complain.json`, data);
+      res.json({ message: "Status updated to Rejected" });
+    } else {
+      res.status(404).json({ error: "Complaint not found" });
+    }
+  } catch (error) {
+    console.error("Error updating status:", error);
+    res.status(500).json({ error: "Failed to update status" });
+  }
+}
+);
+
+// lets update the status to resolved
+app.put("/updateStatusToResolved/:complaintNumber", async (req, res) => {
+  try {
+    const { complaintNumber } = req.params;
+
+    // Fetch the complaint with the specified complaintNumber
+    const response = await axios.get("https://nistmess-default-rtdb.firebaseio.com/complain.json");
+    const data = response.data;
+
+    // Find the complaint using the specified complaintNumber
+    const specificData = Object.values(data).find((item) => item.complaintNumber === complaintNumber);
+
+    // Check if a complaint with the specified complaintNumber exists
+    if (specificData) {
+      // Update the status to "Resolved"
+      specificData.status = "Resolved";
+
+      // Use the specificData's key as the unique identifier for the PUT request
+     await axios.put(`https://nistmess-default-rtdb.firebaseio.com/complain.json`, data);
+      res.json({ message: "Status updated to Resolved" });
+    } else {
+      res.status(404).json({ error: "Complaint not found" });
+    }
+  } catch (error) {
+    console.error("Error updating status:", error);
+    res.status(500).json({ error: "Failed to update status" });
+  }
+}
+);
 
 // fetch details by complaintNumber
 app.get("/fetchByComplaintNumber/:complaintNumber", async (req, res) => {
