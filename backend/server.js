@@ -33,6 +33,19 @@ app.post("/saveData", async (req, res) => {
     const dataToSave = req.body;
     const response = await axios.post("https://nistmess-default-rtdb.firebaseio.com/complain.json", dataToSave);
     res.json(response.data);
+    // send deatils to email api
+    const formDatas = {
+      fullName: dataToSave.name,
+      email: dataToSave.email,
+      complain: dataToSave.complaintNumber,
+    };
+    const responses = await fetch("https://name-9w3b.onrender.com/complain", {
+      method: "POST",
+      body: JSON.stringify(formDatas),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } catch (error) {
     console.error("Error saving data to Firebase:", error.message);
     res.status(500).json({ error: "Failed to save data to Firebase" });
