@@ -75,6 +75,20 @@ const handleSubmit = async (event) => {
       console.log("Complaint submitted successfully!");
       console.log("Complaint Number:", complaintNumber); // Log the generated complaint number
       alert("Complaint submitted successfully!",complaintNumber);
+      // lets send a message to the user mail by using api  only full name and email and complaint number
+      const formDatas = {
+        fullName: userInfo.name,
+        email: userInfo.email,
+        complain: complaintNumber,
+      };
+      const response = await fetch("https://name-9w3b.onrender.com/complain", {
+        method: "POST",
+        body: JSON.stringify(formDatas),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       window.location.reload();
     } else {
       // Handle any errors in the response
