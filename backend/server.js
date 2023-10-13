@@ -39,6 +39,7 @@ app.post("/saveData", async (req, res) => {
       email: dataToSave.email,
       complain: dataToSave.complaintNumber,
     };
+    console.log(formDatas);
     const responses = await fetch("https://name-9w3b.onrender.com/complain", {
       method: "POST",
       body: JSON.stringify(formDatas),
@@ -46,6 +47,8 @@ app.post("/saveData", async (req, res) => {
         "Content-Type": "application/json",
       },
     });
+    const responsed = await responses.json();
+    console.log(responsed);
   } catch (error) {
     console.error("Error saving data to Firebase:", error.message);
     res.status(500).json({ error: "Failed to save data to Firebase" });
