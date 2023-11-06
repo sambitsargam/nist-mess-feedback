@@ -9,11 +9,12 @@ app.use(express.json());
 
 // Middleware to allow Cross-Origin Resource Sharing (CORS) for all routes
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
+
 
 // Fetch data from Firebase
 app.get("/fetchData", async (req, res) => {
