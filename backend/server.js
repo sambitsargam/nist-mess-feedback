@@ -15,6 +15,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// if the request url is local host then only allow the request
+app.use((req, res, next) => {
+  if (req.headers.host === "localhost:3000") {
+    next();
+  } else {
+    res.status(403).json({ error: "Forbidden" });
+  }
+});
+
 
 // Fetch data from Firebase
 app.get("/fetchData", async (req, res) => {
