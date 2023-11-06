@@ -30,34 +30,8 @@ export function Home() {
       </div>
       <div className="footer flex-center">
         <h5>
-          Made with <i className="fa fa-heart" aria-hidden="true"></i> by sambitsargam{" "}
+          Made with <i className="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.linkedin.com/in/sambitsargam/" target="_blank" rel="noreferrer">Sambit Sargam Ekalabya</a>{" "}
         </h5>
-        <div className="icon-bar">
-          <a
-            href="https://github.com/sambitsargam"
-            target="_blank"
-            className="github-logo"
-            rel="noreferrer"
-          >
-            <i className="fa fa-github "></i>
-          </a>
-          <a
-            href="https://twitter.com/sambitsargam"
-            target="_blank"
-            className="twitter"
-            rel="noreferrer"
-          >
-            <i className="fa fa-twitter "></i>
-          </a>
-          <a
-            href="https://linkedin.com/in/sambitsargam"
-            target="_blank"
-            className="linkedin"
-            rel="noreferrer"
-          >
-            <i className="fa fa-linkedin "></i>
-          </a>
-        </div>
         <p className="paragraph-sm">© 2023</p>
       </div>
     </>

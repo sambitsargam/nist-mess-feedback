@@ -243,9 +243,9 @@ async function onChangeCoverImage(e) {
         </div>
       </div>
       <div className="footer flex-center">
-    <h5>
-      Made with <i className="fa fa-heart" aria-hidden="true"></i> by  Sambit Sargam{" "}
-    </h5>
+        <h5>
+          Made with <i className="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.linkedin.com/in/sambitsargam/" target="_blank" rel="noreferrer">Sambit Sargam Ekalabya</a>{" "}
+        </h5>
     </div>
     </div>
   );
