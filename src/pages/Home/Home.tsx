@@ -30,9 +30,9 @@ export function Home() {
       </div>
       <div className="footer flex-center">
         <h5>
-          Made with <i className="fa fa-heart" aria-hidden="true"></i> by <a href="https://www.linkedin.com/in/sambitsargam/" target="_blank" rel="noreferrer">Sambit Sargam Ekalabya</a>{" "}
+          Made with ❤️ by <a href="https://www.linkedin.com/in/sambitsargam/" target="_blank" rel="noreferrer">Sambit Sargam Ekalabya</a>{" "}
         </h5>
-        <p className="paragraph-sm">© 2023</p>
+        <p className="paragraph-sm">www.nist.edu © 2023</p>
       </div>
     </>
   );

@@ -7,22 +7,20 @@ const port = 3001;
 
 app.use(express.json());
 
-// Middleware to allow Cross-Origin Resource Sharing (CORS) for all routes
+// Middleware to allow Cross-Origin Resource Sharing (CORS) for specific domain
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
+  const allowedOrigin = "https://nistmess.vercel.app"; 
 
-// if the request url is local host then only allow the request
-app.use((req, res, next) => {
-  if (req.headers.host === "localhost:3000") {
+  if (req.headers.origin === allowedOrigin) {
+    res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
     next();
   } else {
     res.status(403).json({ error: "Forbidden" });
   }
 });
+
 
 
 // Fetch data from Firebase
