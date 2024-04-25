@@ -17,14 +17,13 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBLe37o35-qGMhG6fv7WNVL68UqLgyrlNM",
-    authDomain: "nistmess.firebaseapp.com",
-    databaseURL: "https://nistmess-default-rtdb.firebaseio.com",
-    projectId: "nistmess",
-    storageBucket: "nistmess.appspot.com",
-    messagingSenderId: "496484191548",
-    appId: "1:496484191548:web:80d8998c2daf1276756239",
-    measurementId: "G-RTGRJTR9JC"
+  apiKey: "AIzaSyC7b6ScU0wxxd4Qy5ZdNNOXZ9RIfl5UK2E",
+  authDomain: "nist-messss.firebaseapp.com",
+  databaseURL: "https://nist-messss-default-rtdb.firebaseio.com",
+  projectId: "nist-messss",
+  storageBucket: "nist-messss.appspot.com",
+  messagingSenderId: "19227464249",
+  appId: "1:19227464249:web:c6231050fc10003981b3e8"
 };
 
 const app = initializeApp(firebaseConfig);
